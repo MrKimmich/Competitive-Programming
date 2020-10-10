@@ -1,0 +1,16 @@
+/*
+A right rotated array is an array with its elements being shifted towards the right by a 'some number' of indices. For example, if the array = {1, 2, 3, 4, 5} and if it is rotated right by two indices, the resultant array = {4, 5, 1, 2, 3}.
+*/
+
+
+def RotateArray(A, K):
+    S = []
+    K = K%len(A)
+    S = A[len(A)-K:]+A[:len(A)-K]
+    print(''.join(str(s)+' ' for s in S))
+
+if __name__ == '__main__':
+    N = int(input())
+    A = list(map(int, input().rstrip().split()))
+    K = int(input())
+    RotateArray(A, K)
