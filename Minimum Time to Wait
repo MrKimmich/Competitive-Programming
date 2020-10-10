@@ -1,0 +1,51 @@
+*/ 
+You are playing a game where you get to collect different antique items through your gameplay which are then used in the trade shop to upgrade your character.
+In order to make the game balance, the creator has set a cooldown time for each antique item. That means, once you collect an antique item, you can use it in trade shop only after the cooldown time.
+
+You have collected N antique items in order. Each upgrade costs K 'consecutive' antique items from your collection and each antique item can only be used once. You want to know how long you have to wait to make M upgrades to your character.
+
+Given N integers, where the ith integer represents the cooldown time of ith antique item you have collected, and two integers M and K, where M represents the number of upgrades you want to make and K represents the number of consecutive antique items you have to trade for each upgrade.
+
+Write a program to print the minimum time you have to wait to make M upgrades. Print -1, if M upgrades are not possible.
+
+Note: When you pick K consecutive antique items to trade from the middle of your collection, after trading, the space used to store them remains empty and is not merged by remaining items in the left part and right part.
+/*
+
+
+INT_MAX = 2 ** 31 - 1
+
+def UpgradePossible(A, Max, right_limit, M, K):
+    antiques = 0
+    upgrades = 0
+    for i in range(right_limit):
+        if A[i]<=Max:
+            antiques += 1
+        else:
+            antiques = 0
+        if antiques == K:
+            upgrades += 1
+            antiques = 0
+    if upgrades >= M:
+        return 1
+
+def MinWait(A, M, K):
+    if M*K > len(A):
+        print(-1)
+        return
+        
+    start = 0
+    end = INT_MAX
+    while start<end:
+        mid = start+(end-start)//2
+        if UpgradePossible(A, mid, len(A), M, K):
+            end = mid
+        else:
+            start = mid+1
+    print(end)
+    
+
+if __name__ == '__main__':
+    N = int(input())
+    A = list(map(int, input().rstrip().split()))
+    M, K = map(int, input().rstrip().split())
+    MinWait(A, M, K)
