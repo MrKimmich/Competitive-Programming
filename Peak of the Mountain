@@ -1,0 +1,23 @@
+#An array A with N elements is called a mountain if there is an index 'i' such that,
+#A[0] < A[1] < A[2] < ... < A[i], and
+#A[i] > A[i+1] > A[i+2] > ... > A[N-1]
+#Here, the element at index i
+#is called the peak element of the mountain.
+#Given an array A of N integers, A forms a mountain, write a program to find the index of peak element.
+
+
+def PeakOfMountain(A):
+    N = len(A)
+    for i in range(1, N-1):
+        if A[i]>A[i-1] and A[i]>A[i+1]:
+            print(str(i))
+            return
+    if A[0]>A[1]:
+        print(str(0))
+    elif A[N-1]>A[N-2]:
+        print(str(N-1))
+
+if __name__ == '__main__':
+    N = int(input())
+    A = list(map(int, input().rstrip().split()))
+    PeakOfMountain(A)
