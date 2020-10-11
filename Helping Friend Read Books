@@ -1,0 +1,33 @@
+// Your friend likes to read lots of books. In a library, there are N piles of books, and each pile contains pile[i] number of books. Your friend can decide K, the number of books to read in a day.
+
+//On any day, if a pile has less than K books, he reads all of them and won't read any more books that day. Similarly, if a pile has more than K books, he reads only K books of it and the rest of them are left for another day.
+
+//He wants to read all books in D days. So, write a program to find minimum K so that your friend will finish reading all books by the end of D days.
+
+
+
+def isPossible(A, K, D):
+    if not K:
+        return False
+    return sum((p - 1) // K + 1 for p in A) <= D
+
+def DecideBooks(A, D):
+    Low = 0
+    High = max(A)
+    Mid = 0
+    flag = Mid
+    while Low<High:
+        Mid = (Low+High)//2
+        if isPossible(A, Mid, D):
+            High = Mid
+        else:
+            Low = Mid+1
+    print(Low)
+    return
+
+
+if __name__ == '__main__':
+    N = int(input())
+    A = list(map(int, input().rstrip().split()))
+    D = int(input())
+    DecideBooks(A, D)
