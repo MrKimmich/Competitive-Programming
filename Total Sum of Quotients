@@ -1,0 +1,30 @@
+// Given an array A of N integers and an integer S. Write an efficient program to find the minimum X such that when X divides all the elements of A, the total sum of the quotients doesn't exceed S. Consider Integer division while dividing elements of the array.
+// Note: X should be a positive number, and the total sum of quotients can be equal to S.
+
+
+def isPossible(A, Mid, Q):
+    count = 0
+    for ele in A:
+        count += (ele//Mid)
+    if count>Q:
+        return True
+    else:
+        return False
+
+
+def MinNumber(A, Q):
+    Low = 1
+    High = max(A)
+    while Low<High:
+        Mid = (Low+High)//2
+        if isPossible(A, Mid, Q):
+            Low = Mid+1
+        else:
+            High = Mid
+    print(str(Low))
+    return
+
+if __name__ == '__main__':
+    N, Q = map(int, input().rstrip().split())
+    A = list(map(int, input().rstrip().split()))
+    MinNumber(A, Q)
