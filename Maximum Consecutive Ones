@@ -1,0 +1,21 @@
+//Given a Binary array A of N length, write a program to find the maximum number of consecutive 1s in A.
+
+
+def MaxOnes(A, N):
+    count = 0
+    Max = 0
+    for ele in A:
+        if ele:
+            count += 1
+            if count>Max:
+                Max = count
+        else:
+            count = 0
+    print(Max)
+
+
+
+if __name__ == '__main__':
+    N = int(input())
+    A = list(map(int, input().rstrip().split()))
+    MaxOnes(A, N)
