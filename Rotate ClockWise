@@ -1,0 +1,27 @@
+//Given a 2D matrix A with N rows and N columns, write a program to rotate it 90 degrees in the clockwise direction as shown in the image below.
+Note: Try to rotate without using an extra matrix.
+
+
+def Rotate(A):
+    N = len(A)
+    for i in range(0, int(N/2)):
+        for j in range(i, N-i-1):
+            temp = A[i][j] 
+            A[i][j] = A[N - 1 - j][i] 
+            A[N - 1 - j][i] = A[N - 1 - i][N - 1 - j] 
+            A[N - 1 - i][N - 1 - j] = A[j][N - 1 - i] 
+            A[j][N - 1 - i] = temp 
+            
+    for l in A:
+        S = ''
+        for ele in l:
+            S += str(ele)+' '
+        print(S)
+
+
+if __name__ =='__main__':
+    N = int(input())
+    A = []
+    for i in range(N):
+        A.append(list(map(int, input().rstrip().split())))
+    Rotate(A)
