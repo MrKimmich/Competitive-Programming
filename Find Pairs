@@ -1,0 +1,23 @@
+//Given an array A of N unique integers and a target integer K, A is sorted in increasing order, write an efficient program to find pairs whose sum is equal to K.
+Note: There is at most one such pair in A.
+
+
+def FindPairs(A, N, K):
+    Low = 0
+    High = N-1
+    while Low<High:
+        if (A[Low]+A[High])<K:
+            Low += 1
+        elif (A[Low]+A[High])>K:
+            High -= 1
+        else:
+            print(str(Low)+' '+str(High))
+            return
+    print(str(-1))
+    return
+
+
+if __name__ == '__main__':
+    N, K = map(int, input().rstrip().split())
+    A = list(map(int, input().rstrip().split()))
+    FindPairs(A, N, K)
